@@ -1,5 +1,3 @@
-import { User } from 'store/entities/users/types';
-
 export interface SystemState {
 	isAuthenticated: boolean
 	isAuthorized: boolean

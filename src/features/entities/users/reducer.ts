@@ -1,3 +1,5 @@
+import { EntitiesActionTypes, INVALIDATE_ENTITIES } from 'features/entities/types'
+
 import {
   UsersState,
   UserActionTypes,
@@ -5,7 +7,9 @@ import {
   BLOCK_USER
 } from './types'
 
-const usersReducer = (state: UsersState = {}, action: UserActionTypes): UsersState => {
+const initialUsersState = {}
+
+const usersReducer = (state: UsersState = initialUsersState, action: UserActionTypes | EntitiesActionTypes): UsersState => {
 	switch (action.type) {
 		case REGISTER_USER:
 			return {
@@ -20,6 +24,8 @@ const usersReducer = (state: UsersState = {}, action: UserActionTypes): UsersSta
 					isBlocked: true
 				}
 			}
+		case INVALIDATE_ENTITIES:
+			return initialUsersState
 		default:
 			return state
 	}
