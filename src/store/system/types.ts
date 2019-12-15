@@ -11,9 +11,9 @@ export interface Credentials {
 	password: string
 }
 
-export const LOG_IN = 'LOG_IN'
-export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
-export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'
+export const SIGN_IN = 'SIGN_IN'
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 
 export const AUTHENTICATE = 'AUTHENTICATE'
 export const AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS'
@@ -23,18 +23,18 @@ export const AUTHORIZE = 'AUTHORIZE'
 export const AUTHORIZE_SUCCESS = 'AUTHORIZE_SUCCESS'
 export const AUTHORIZE_FAILURE = 'AUTHORIZE_FAILURE'
 
-interface LogInAction {
-	type: typeof LOG_IN
+interface SignInAction {
+	type: typeof SIGN_IN
 	payload: Credentials
 }
 
-interface LogInSuccessAction {
-	type: typeof LOG_IN_SUCCESS
+interface SignInSuccessAction {
+	type: typeof SIGN_IN_SUCCESS
 }
 
-interface LogInFailureAction {
-	type: typeof LOG_IN_FAILURE
+interface SignInFailureAction {
+	type: typeof SIGN_IN_FAILURE
 	payload: string
 }
 
-export type UserActionTypes = LogInAction | LogInSuccessAction | LogInFailureAction
+export type UserActionTypes = SignInAction | SignInSuccessAction | SignInFailureAction
