@@ -4,7 +4,7 @@ import {
 
 const initialSystemState = {
 	isAuthenticated: false,
-	loggedIn: false,
+	isAuthorized: false,
 	user: null
 }
 
