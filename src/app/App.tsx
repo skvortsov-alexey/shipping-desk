@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Navigation from 'components/Navigation'
 
@@ -17,13 +17,15 @@ const App = () => (
   <Router>
     <Navigation />
     <hr />
-    <Route exact parh={Routes.LANDING} component={LandingPage} />
-    <Route parh={Routes.SIGN_UP} component={SignUpPage} />
-    <Route parh={Routes.SIGN_IN} component={SignInPage} />
-    <Route parh={Routes.PASSWORD_FORGET} component={PasswordForgetPage} />
-    <Route parh={Routes.HOME} component={HomePage} />
-    <Route parh={Routes.ACCOUNT} component={AccountPage} />
-    <Route parh={Routes.ADMIN} component={AdminPage} />
+    <Switch>      
+      <Route exact parh={Routes.LANDING} component={LandingPage} />
+      <Route parh={Routes.SIGN_UP} component={SignUpPage} />
+      <Route parh={Routes.SIGN_IN} component={SignInPage} />
+      <Route parh={Routes.PASSWORD_FORGET} component={PasswordForgetPage} />
+      <Route parh={Routes.HOME} component={HomePage} />
+      <Route parh={Routes.ACCOUNT} component={AccountPage} />
+      <Route parh={Routes.ADMIN} component={AdminPage} />
+    </Switch>
   </Router>
 )
 
