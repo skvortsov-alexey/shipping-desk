@@ -1,14 +1,7 @@
-import { combineReducers, createStore } from 'redux'
+import { createStore } from 'redux'
+import rootReducer from './rootReducer'
 
-import entities from 'features/entities/reducer'
-import system from 'features/system/reducer'
-
-function configureStore() {
-  const rootReducer = combineReducers({
-    entities,
-    system
-  })
-  
+function configureStore() {  
   const store = createStore(
     rootReducer,
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -16,8 +9,8 @@ function configureStore() {
   )
   
   if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./reducer', () => {
-      const newRootReducer = require('./reducer').default
+    module.hot.accept('./rootReducer', () => {
+      const newRootReducer = require('./rootReducer').default
       store.replaceReducer(newRootReducer)
     })
   }
