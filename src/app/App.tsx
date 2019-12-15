@@ -1,25 +1,30 @@
 import React from 'react'
-import logo from './logo.svg'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Navigation from 'components/Navigation'
+
+import AccountPage from 'features/pages/AccountPage'
+import AdminPage from 'features/pages/AdminPage'
+import HomePage from 'features/pages/HomePage'
+import LandingPage from 'features/pages/LandingPage'
+import PasswordForgetPage from 'features/pages/PasswordForgetPage'
+import SignInPage from 'features/pages/SignInPage'
+import SignUpPage from 'features/pages/SignUpPage'
+
+import * as Routes from 'features/pages/types';
+
+const App = () => (
+  <Router>
+    <Navigation />
+    <hr />
+    <Route exact parh={Routes.LANDING} component={LandingPage} />
+    <Route parh={Routes.SIGN_UP} component={SignUpPage} />
+    <Route parh={Routes.SIGN_IN} component={SignInPage} />
+    <Route parh={Routes.PASSWORD_FORGET} component={PasswordForgetPage} />
+    <Route parh={Routes.HOME} component={HomePage} />
+    <Route parh={Routes.ACCOUNT} component={AccountPage} />
+    <Route parh={Routes.ADMIN} component={AdminPage} />
+  </Router>
+)
 
 export default App
