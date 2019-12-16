@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import rootReducer from './rootReducer'
+import rootReducer from './reducer'
 
 function configureStore() {  
   const store = createStore(
@@ -9,8 +9,8 @@ function configureStore() {
   )
   
   if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./rootReducer', () => {
-      const newRootReducer = require('./rootReducer').default
+    module.hot.accept('./reducer', () => {
+      const newRootReducer = require('./reducer').default
       store.replaceReducer(newRootReducer)
     })
   }

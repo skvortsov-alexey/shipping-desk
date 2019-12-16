@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import './index.css'
-import App from './app'
-import configureStore from "./configureStore"
+import App, { configureStore }  from './app'
 import * as serviceWorker from './serviceWorker'
 
 const store = configureStore()
