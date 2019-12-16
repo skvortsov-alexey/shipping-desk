@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Navigation from 'components/Navigation'
 
-import AccountPage from 'features/pages/AccountPage'
-import AdminPage from 'features/pages/AdminPage'
-import HomePage from 'features/pages/HomePage'
-import LandingPage from 'features/pages/LandingPage'
-import PasswordForgetPage from 'features/pages/PasswordForgetPage'
-import SignInPage from 'features/pages/SignInPage'
-import SignUpPage from 'features/pages/SignUpPage'
+import AccountPage from 'features/pages/Account'
+import AdminPage from 'features/pages/Admin'
+import HomePage from 'features/pages/Home'
+import LandingPage from 'features/pages/Landing'
+import PasswordForgetPage from 'features/pages/PasswordForget'
+import SignInPage from 'features/pages/SignIn'
+import SignUpPage from 'features/pages/SignUp'
 
 import * as Routes from 'features/pages/types';
 
