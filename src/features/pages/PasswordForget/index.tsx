@@ -1,8 +1,9 @@
 import React from 'react'
+import PasswordForgetForm from './PasswordForgetForm'
 
 const PasswordForgetPage = () => (
   <div>
-    PasswordForgetPage
+    <PasswordForgetForm onSubmit={(...arg) =>  console.log(arg)} />
   </div>
 )
 
