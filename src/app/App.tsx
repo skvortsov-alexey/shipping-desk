@@ -11,20 +11,20 @@ import PasswordForgetPage from 'features/pages/PasswordForget'
 import SignInPage from 'features/pages/SignIn'
 import SignUpPage from 'features/pages/SignUp'
 
-import * as Routes from 'features/pages/types';
+import * as Routes from 'features/pages/types'
 
 const App = () => (
   <Router>
     <Navigation />
     <hr />
     <Switch>      
-      <Route exact parh={Routes.LANDING} component={LandingPage} />
-      <Route parh={Routes.SIGN_UP} component={SignUpPage} />
-      <Route parh={Routes.SIGN_IN} component={SignInPage} />
-      <Route parh={Routes.PASSWORD_FORGET} component={PasswordForgetPage} />
-      <Route parh={Routes.HOME} component={HomePage} />
-      <Route parh={Routes.ACCOUNT} component={AccountPage} />
-      <Route parh={Routes.ADMIN} component={AdminPage} />
+      <Route exact path={Routes.LANDING} component={LandingPage} />
+      <Route path={Routes.SIGN_UP} component={SignUpPage} />
+      <Route path={Routes.SIGN_IN} component={SignInPage} />
+      <Route path={Routes.PASSWORD_FORGET} component={PasswordForgetPage} />
+      <Route path={Routes.HOME} component={HomePage} />
+      <Route path={Routes.ACCOUNT} component={AccountPage} />
+      <Route path={Routes.ADMIN} component={AdminPage} />
     </Switch>
   </Router>
 )
