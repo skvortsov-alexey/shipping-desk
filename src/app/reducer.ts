@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
 import entities from 'features/entities/reducer'
-import system from 'features/system/reducer'
+import userSession from 'features/userSession/reducer'
 
 const rootReducer = combineReducers({
   entities,
-  system
+  userSession
 })
 
 export default rootReducer

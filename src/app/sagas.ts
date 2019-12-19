@@ -1,9 +1,9 @@
 import { fork } from 'redux-saga/effects'
 
-import systemSaga from 'features/system/sagas'
+import userSessionSaga from 'features/userSession/sagas'
 
 function* rootSaga() {
-  yield fork(systemSaga)
+  yield fork(userSessionSaga)
 }
 
 export default rootSaga

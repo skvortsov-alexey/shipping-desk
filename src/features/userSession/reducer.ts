@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-import { SystemState, SignInPayload } from './types'
+import { SystemState } from './types'
 
 const initialSystemState: SystemState = {
 	isAuthenticated: false,
