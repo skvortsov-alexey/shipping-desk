@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { UserSession } from './types'
+import { Credentials, Failure, UserSession } from './types'
 
 const initialUserSessionState: UserSession = {
 	isLoggedIn: false,
@@ -13,39 +13,35 @@ const userSessionSlice = createSlice({
 	name: 'userSession',
 	initialState: initialUserSessionState,
 	reducers: {
-		signIn: {
-			reducer: (state) => {
-				state.signInErrorCode = null 
-			},
-			prepare: (login: string, password: string) => ({ payload: { login, password } })
+		signIn: (state, action: PayloadAction<Credentials>) => {
+			state.signInErrorCode = null
 		},
 		signInSuccess: (state) => {
 			state.isLoggedIn = true
 		},
-		signInFailure: {
-			reducer: (state, action) => {
-				state.signInErrorCode = action.payload.code 
-			},
-			prepare: (message: string, code: string) => ({ payload: { message, code } })
+		signInFailure: (state, action: PayloadAction<Failure>) => {
+			state.isLoggedIn = false
+			state.signInErrorCode = action.payload.code 
 		},
 
-		signOut: () => {},
-		signOutSuccess: (state) => { state.isLoggedIn = false },
-		signOutFailure: () => {},
 
-
-		sighUp: {
-			reducer: (state) => {
-				state.signUpErrorCode = null 
-			},
-			prepare: (emaul: string, password: string) => ({ payload: { emaul, password } })
+		signOut: (state) => {
+			state.signOutErrorCode = null
 		},
-		sighUpSuccess: (state) => {},
-		sighUpFailure: {
-			reducer: (state, action) => {
-				state.signUpErrorCode = action.payload.code 
-			},
-			prepare: (message: string, code: string) => ({ payload: { message, code } })
+		signOutSuccess: (state) => {
+			state.isLoggedIn = false
+		},
+		signOutFailure: (state, action: PayloadAction<Failure>) => {
+			state.signOutErrorCode = action.payload.code 
+		},
+
+
+		sighUp: (state, action: PayloadAction<Credentials>) => {
+			state.signUpErrorCode = null 
+		},
+		sighUpSuccess: () => {},
+		sighUpFailure: (state, action: PayloadAction<Failure>) => {
+			state.signUpErrorCode = action.payload.code 
 		},
 	}
 })
