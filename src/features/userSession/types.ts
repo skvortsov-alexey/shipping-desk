@@ -8,7 +8,7 @@ export interface Failure {
 	code: string
 }
 
-export interface UserSession {
+export interface UserSessionState {
 	isLoggedIn: boolean
 	signInErrorCode: string | null
 	signOutErrorCode: string | null

@@ -9,9 +9,6 @@ function* userSessionSaga() {
   yield takeLeading(actions.signIn, sighInSaga)
   yield takeLeading(actions.signOut, signOutSaga)
   yield takeLeading(actions.signUp, sighUpSaga)
-  
-  const credentials = { email: 'cdcsdc@gmail.com', password: 'cdcsdcsdc' }
-  yield put(actions.signIn(credentials))
 }
 
 function* sighInSaga(action: PayloadAction<Credentials>) {
