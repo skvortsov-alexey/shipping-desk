@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
-import { Api } from './types'
+import { Api, ApiError, ApiErrorType } from './types'
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,14 +21,36 @@ class FirebaseApi implements Api {
     this.auth = firebase.auth()
   }
 
-  async createUser (email: string, password: string) {
-    await this.auth.createUserWithEmailAndPassword(email, password)
+  async createUser(email: string, password: string) {
+    try {
+      await this.auth.createUserWithEmailAndPassword(email, password)
+    } catch(e) {
+      switch (e.code) {
+        case 'auth/email-already-in-use': throw new ApiError(e.message, ApiErrorType.AUTH_EMAIL_ALREADY_IN_USE, e)
+        case 'auth/invalid-email': throw new ApiError(e.message, ApiErrorType.AUTH_INVALID_EMAIL, e)
+        case 'auth/operation-not-allowed': throw new ApiError(e.message, ApiErrorType.AUTH_OPERATION_NOT_ALLOWED, e)
+        case 'auth/weak-password': throw new ApiError(e.message, ApiErrorType.AUTH_WEAK_PASSWORD, e)
+        default:
+          throw new ApiError(e.message, ApiErrorType.UNKNOWN_API_ERROR, e)
+      }
+    }
   }
-    
+
   async signIn(email: string, password: string) {
-    await this.auth.signInWithEmailAndPassword(email, password)
+    try {
+      await this.auth.signInWithEmailAndPassword(email, password)
+    } catch(e) {
+      switch (e.code) {
+        case 'auth/invalid-email': throw new ApiError(e.message, ApiErrorType.AUTH_INVALID_EMAIL, e)
+        case 'auth/user-disabled': throw new ApiError(e.message, ApiErrorType.AUTH_USER_DISABLED, e)
+        case 'auth/user-not-found': throw new ApiError(e.message, ApiErrorType.AUTH_USER_NOT_FOUND, e)
+        case 'auth/wrong-password': throw new ApiError(e.message, ApiErrorType.AUTH_WRONG_PASSWORD, e)
+        default:
+          throw new ApiError(e.message, ApiErrorType.UNKNOWN_API_ERROR, e)
+      }
+    }
   }
-    
+
   async signOut() {
     await this.auth.signOut()
   }

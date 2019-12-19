@@ -1,18 +1,35 @@
-import {
-  SystemState,
-} from './types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialSystemState = {
+import { SystemState, SignInPayload } from './types'
+
+const initialSystemState: SystemState = {
 	isAuthenticated: false,
-	isAuthorized: false,
-	user: null
 }
 
-const systemStateReducer = (state: SystemState = initialSystemState, action: any): SystemState => {
-	switch (action.type) {
-		default:
-			return state
+const systemSlice = createSlice({
+	name: 'system',
+	initialState: initialSystemState,
+	reducers: {
+		sighUp: () => {},
+		sighUpSuccess: () => {},
+		sighUpFailure: () => {},
+
+		signIn: {
+			reducer: () => {},
+			prepare: (login: string, password: string) => ({ payload: { login, password } })
+		},
+		signInSuccess: (state) => {	state.isAuthenticated = true },
+		signInFailure: {
+			reducer: () => {},
+			prepare: (message: string, code: string) => ({ payload: { message, code } })
+		},
+
+		signOut: () => {},
+		signOutSuccess: (state) => { state.isAuthenticated = false },
+		signOutFailure: () => {}
 	}
-}
+})
 
-export default systemStateReducer
+export const { actions } = systemSlice
+
+export default systemSlice.reducer

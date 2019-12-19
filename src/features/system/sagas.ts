@@ -1,13 +1,23 @@
-import { takeLeading } from 'redux-saga/effects'
+import { put, takeLeading } from 'redux-saga/effects'
+import { PayloadAction } from '@reduxjs/toolkit'
 
-import { SIGN_IN } from './types'
+import api from 'api'
+import { SignInPayload } from './types'
+import { actions } from './reducer'
 
 function* systemSaga() {
-  yield takeLeading(SIGN_IN, sighInSaga)
+  yield takeLeading(actions.signIn.type, sighInSaga)
+  yield put(actions.signIn('cdcsdc@gmail.com', 'csdcsdc'))
 }
 
-function* sighInSaga() {
-  console.log('SignIn')
+function* sighInSaga({ payload }: PayloadAction<SignInPayload>) {
+  try {
+    const { login, password } = payload 
+    yield api.signIn(login, password)
+    yield put(actions.signInSuccess())
+  } catch (e) {
+    yield put(actions.signInFailure(e.message, e.code))
+  }  
 }
 
 export default systemSaga
