@@ -36,11 +36,11 @@ const userSessionSlice = createSlice({
 		},
 
 
-		sighUp: (state, action: PayloadAction<Credentials>) => {
+		signUp: (state, action: PayloadAction<Credentials>) => {
 			state.signUpErrorCode = null 
 		},
-		sighUpSuccess: () => {},
-		sighUpFailure: (state, action: PayloadAction<Failure>) => {
+		signUpSuccess: () => {},
+		signUpFailure: (state, action: PayloadAction<Failure>) => {
 			state.signUpErrorCode = action.payload.code 
 		},
 	}
