@@ -1,35 +1,55 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { SystemState } from './types'
+import { UserSession } from './types'
 
-const initialSystemState: SystemState = {
-	isAuthenticated: false,
+const initialUserSessionState: UserSession = {
+	isLoggedIn: false,
+	signInErrorCode: null,
+	signOutErrorCode: null,
+	signUpErrorCode: null
 }
 
-const systemSlice = createSlice({
-	name: 'system',
-	initialState: initialSystemState,
+const userSessionSlice = createSlice({
+	name: 'userSession',
+	initialState: initialUserSessionState,
 	reducers: {
-		sighUp: () => {},
-		sighUpSuccess: () => {},
-		sighUpFailure: () => {},
-
 		signIn: {
-			reducer: () => {},
+			reducer: (state) => {
+				state.signInErrorCode = null 
+			},
 			prepare: (login: string, password: string) => ({ payload: { login, password } })
 		},
-		signInSuccess: (state) => {	state.isAuthenticated = true },
+		signInSuccess: (state) => {
+			state.isLoggedIn = true
+		},
 		signInFailure: {
-			reducer: () => {},
+			reducer: (state, action) => {
+				state.signInErrorCode = action.payload.code 
+			},
 			prepare: (message: string, code: string) => ({ payload: { message, code } })
 		},
 
 		signOut: () => {},
-		signOutSuccess: (state) => { state.isAuthenticated = false },
-		signOutFailure: () => {}
+		signOutSuccess: (state) => { state.isLoggedIn = false },
+		signOutFailure: () => {},
+
+
+		sighUp: {
+			reducer: (state) => {
+				state.signUpErrorCode = null 
+			},
+			prepare: (emaul: string, password: string) => ({ payload: { emaul, password } })
+		},
+		sighUpSuccess: (state) => {},
+		sighUpFailure: {
+			reducer: (state, action) => {
+				state.signUpErrorCode = action.payload.code 
+			},
+			prepare: (message: string, code: string) => ({ payload: { message, code } })
+		},
 	}
 })
 
-export const { actions } = systemSlice
+export const { actions } = userSessionSlice
 
-export default systemSlice.reducer
+export default userSessionSlice.reducer

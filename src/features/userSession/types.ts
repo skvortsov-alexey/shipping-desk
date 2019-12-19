@@ -1,5 +1,8 @@
-export interface SystemState {
-	isAuthenticated: boolean
+export interface UserSession {
+	isLoggedIn: boolean
+	signInErrorCode: string | null
+	signOutErrorCode: string | null
+	signUpErrorCode: string | null
 }
 
 export interface SignInPayload {
