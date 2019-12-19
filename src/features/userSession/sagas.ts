@@ -3,7 +3,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 
 import api from 'api'
 import { Credentials } from './types'
-import { actions } from './reducer'
+import { actions } from './slice'
 
 function* userSessionSaga() {
   yield takeLeading(actions.signIn, sighInSaga)
