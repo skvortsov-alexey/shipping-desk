@@ -8,13 +8,11 @@ export interface Api {
 
 export class ApiError extends Error {
   protected code?: string
-  protected cause: Error
 
-  constructor(message: string, code: ApiErrorType, cause: Error) {
+  constructor(message: string, code: ApiErrorType) {
     super(message)
-    this.name = this.constructor.name
     this.code = code
-    this.cause = cause    
+    this.name = this.constructor.name  
   }
 }
 
@@ -27,5 +25,5 @@ export enum ApiErrorType {
   AUTH_WRONG_PASSWORD = 'auth/wrong-password',
   AUTH_WEAK_PASSWORD = 'auth/weak-password',
 
-  UNKNOWN_API_ERROR = 'unknown-api-error'
+  API_UNKNOWN_ERROR = 'api/unknown-error'
 }

@@ -26,12 +26,12 @@ class FirebaseApi implements Api {
       await this.auth.createUserWithEmailAndPassword(email, password)
     } catch(e) {
       switch (e.code) {
-        case 'auth/email-already-in-use': throw new ApiError(e.message, ApiErrorType.AUTH_EMAIL_ALREADY_IN_USE, e)
-        case 'auth/invalid-email': throw new ApiError(e.message, ApiErrorType.AUTH_INVALID_EMAIL, e)
-        case 'auth/operation-not-allowed': throw new ApiError(e.message, ApiErrorType.AUTH_OPERATION_NOT_ALLOWED, e)
-        case 'auth/weak-password': throw new ApiError(e.message, ApiErrorType.AUTH_WEAK_PASSWORD, e)
+        case 'auth/email-already-in-use': throw new ApiError(e.message, ApiErrorType.AUTH_EMAIL_ALREADY_IN_USE)
+        case 'auth/invalid-email': throw new ApiError(e.message, ApiErrorType.AUTH_INVALID_EMAIL)
+        case 'auth/operation-not-allowed': throw new ApiError(e.message, ApiErrorType.AUTH_OPERATION_NOT_ALLOWED)
+        case 'auth/weak-password': throw new ApiError(e.message, ApiErrorType.AUTH_WEAK_PASSWORD)
         default:
-          throw new ApiError(e.message, ApiErrorType.UNKNOWN_API_ERROR, e)
+          throw new ApiError(e.message, ApiErrorType.API_UNKNOWN_ERROR)
       }
     }
   }
@@ -41,12 +41,12 @@ class FirebaseApi implements Api {
       await this.auth.signInWithEmailAndPassword(email, password)
     } catch(e) {
       switch (e.code) {
-        case 'auth/invalid-email': throw new ApiError(e.message, ApiErrorType.AUTH_INVALID_EMAIL, e)
-        case 'auth/user-disabled': throw new ApiError(e.message, ApiErrorType.AUTH_USER_DISABLED, e)
-        case 'auth/user-not-found': throw new ApiError(e.message, ApiErrorType.AUTH_USER_NOT_FOUND, e)
-        case 'auth/wrong-password': throw new ApiError(e.message, ApiErrorType.AUTH_WRONG_PASSWORD, e)
+        case 'auth/invalid-email': throw new ApiError(e.message, ApiErrorType.AUTH_INVALID_EMAIL)
+        case 'auth/user-disabled': throw new ApiError(e.message, ApiErrorType.AUTH_USER_DISABLED)
+        case 'auth/user-not-found': throw new ApiError(e.message, ApiErrorType.AUTH_USER_NOT_FOUND)
+        case 'auth/wrong-password': throw new ApiError(e.message, ApiErrorType.AUTH_WRONG_PASSWORD)
         default:
-          throw new ApiError(e.message, ApiErrorType.UNKNOWN_API_ERROR, e)
+          throw new ApiError(e.message, ApiErrorType.API_UNKNOWN_ERROR)
       }
     }
   }
