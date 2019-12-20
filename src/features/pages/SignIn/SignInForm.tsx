@@ -1,20 +1,18 @@
 import React, { FormEvent, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { RootState } from 'app/types'
-import { actions } from 'features/userSession/slice'
+interface SignInFormProps {  
+  errorMessage: string | null
+  onSubmit: (email: string, password: string) => void
+}
 
-function SignInForm() {
+function SignInForm({ errorMessage, onSubmit }: SignInFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const errorCode = useSelector((state: RootState) => state.userSession.signInErrorCode)
-  const dispatch = useDispatch()
 
   const isInvalid = !email || !password
 
   function handleSubmit(event: FormEvent) {
-    dispatch(actions.signIn({ email, password }))
+    onSubmit(email, password)
     event.preventDefault()
   }
 
@@ -37,7 +35,7 @@ function SignInForm() {
       <button disabled={isInvalid} type="submit">
         Sign In
       </button>
-      {errorCode && <p>{errorCode}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </form>
   )
 }
