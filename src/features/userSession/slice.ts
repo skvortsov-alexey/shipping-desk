@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Credentials, Failure, UserSessionState } from './types'
+import { Failure } from 'app/types'
+import { Credentials, UserSessionState } from './types'
 
 const initialUserSessionState: UserSessionState = {
 	isLoggedIn: false,

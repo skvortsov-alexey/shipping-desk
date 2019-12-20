@@ -3,11 +3,6 @@ export interface Credentials {
 	password: string
 }
 
-export interface Failure {
-	message: string
-	code: string
-}
-
 export interface UserSessionState {
 	isLoggedIn: boolean
 	signInErrorCode: string | null
